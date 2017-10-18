@@ -22,6 +22,7 @@ private:
     bool showed;
     QTimeLine *timeLine1,*timeLine2;
     QListWidget *listWidget1,*listWidget2;
+    void resizeEvent(QResizeEvent *event);
 
 private slots:    
     void frameChange(int f);

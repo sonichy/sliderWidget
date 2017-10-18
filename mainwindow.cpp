@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setStyleSheet("QListWidget::item{padding:5px;}");
     showed = false;
-    setFixedSize(600,400);
+    resize(600,400);
     pushButton = new QPushButton("设置",this);
     pushButton->resize(width(),30);
     pushButton->move(0,height()/2-pushButton->height()/2);
@@ -114,5 +114,22 @@ void MainWindow::itemClick2(QListWidgetItem* item)
         break;
     default:
         break;
+    }
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event);
+    pushButton->move(0, height()/2 - pushButton->height()/2);
+    widget1->resize(400,height());
+    listWidget1->resize(200,height());
+    listWidget2->resize(200,height());
+    scrollArea->setGeometry(0,0,200,height());
+    if(showed){
+        pushButton->resize(width()-200,30);
+        scrollArea->move(width()-200, 0);
+    }else{
+        pushButton->resize(width(), 30);
+        scrollArea->move(width(), 0);
     }
 }
